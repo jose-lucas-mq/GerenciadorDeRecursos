@@ -1,4 +1,4 @@
-
+//Importando o Random para o programa
 import java.util.Random;
 
 /*
@@ -56,9 +56,10 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        inAvgDisc = new javax.swing.JLabel();
+        inAvgDis = new javax.swing.JLabel();
         inMaxDis = new javax.swing.JLabel();
         inMinDis = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -193,7 +194,7 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
 
         jLabel25.setText("Média");
 
-        inAvgDisc.setText("----");
+        inAvgDis.setText("----");
 
         inMaxDis.setText("----");
 
@@ -209,7 +210,7 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                     .addComponent(jLabel23)
                     .addComponent(jLabel24)
                     .addComponent(jLabel25)
-                    .addComponent(inAvgDisc, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inAvgDis, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inMaxDis, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inMinDis, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(109, Short.MAX_VALUE))
@@ -228,9 +229,12 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jLabel25)
                 .addGap(3, 3, 3)
-                .addComponent(inAvgDisc)
+                .addComponent(inAvgDis)
                 .addContainerGap())
         );
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel7.setText("José Lucas | 2ADSB");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -262,7 +266,9 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
-                        .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98)
+                        .addComponent(jLabel7))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(225, 225, 225)
                         .addComponent(jLabel1)))
@@ -290,7 +296,9 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -320,9 +328,13 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReadActionPerformed
     
     // Valores da CPU
-    Integer valCpu = 0, maxCpu = 0, minCpu = 100, avgCpu = 0;
+    Integer valCpu = 0, maxCpu = 0, minCpu = 100, sumCpu = 0;
+    Double avgCpu = 0.0;
     public void newReadCpu(){
         valCpu = r.nextInt(101);
+        
+        // Atribuindo a nova leitura ao total de gasto de CPU
+        sumCpu += valCpu;
         
         //Mostrando valor na barra
         valueCpu.setValue(valCpu);
@@ -338,12 +350,20 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
             minCpu = valCpu;
             inMinCpu.setText(String.format("%d %%", minCpu));
         }
+        
+        //Calculando média de uso da CPU
+        avgCpu = (Double.valueOf(sumCpu)/ Double.valueOf(c));
+        inAvgCpu.setText(String.format("%.2f %%", avgCpu));
     }
     
      // Valores da Memoria
-    Integer valMem = 0, maxMem = 0, minMem = 100, avgMem = 0;;
+    Integer valMem = 0, maxMem = 0, minMem = 100, sumMem = 0;
+    Double avgMem = 0.0;
     public void newReadMem(){
         valMem = r.nextInt(101);
+        
+        // Atribuindo a nova leitura ao total de gasto de memória
+        sumMem += valMem;
         
         //Mostrando valor na barra
         valueMem.setValue(valMem);
@@ -359,12 +379,20 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
             minMem = valMem;
             inMinMem.setText(String.format("%d %%", minMem));
         }
+        
+        //Calculando média de uso da memória
+        avgMem = (Double.valueOf(sumMem)/ Double.valueOf(c));
+        inAvgMem.setText(String.format("%.2f %%", avgMem));
     }
     
     // Valores do Disco
-     Integer valDis = 0, maxDis = 0, minDis = 100, avgDis = 0;;
+     Integer valDis = 0, maxDis = 0, minDis = 100, sumDis = 0;
+     Double avgDis = 0.0;
     public void newReadDis(){
         valDis = r.nextInt(101);
+        
+        // Atribuindo a nova leitura ao total de gasto de disco
+        sumDis += valDis;
         
         //Mostrando valor na barra
         valueDis.setValue(valDis);
@@ -380,6 +408,10 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
             minDis = valDis;
             inMinDis.setText(String.format("%d %%", minDis));
         }
+        
+        //Calculando média de uso da disco
+        avgDis = (Double.valueOf(sumDis)/ Double.valueOf(c));
+        inAvgDis.setText(String.format("%.2f %%", avgDis));
     }
     
     
@@ -437,7 +469,7 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRead;
     private javax.swing.JLabel inAvgCpu;
-    private javax.swing.JLabel inAvgDisc;
+    private javax.swing.JLabel inAvgDis;
     private javax.swing.JLabel inAvgMem;
     private javax.swing.JLabel inMaxCpu;
     private javax.swing.JLabel inMaxDis;
@@ -458,6 +490,7 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
