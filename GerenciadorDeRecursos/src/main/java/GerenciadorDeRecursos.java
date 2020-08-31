@@ -341,6 +341,12 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
         
         //Mostrando valor na barra
         valueMem.setValue(valMem);
+        
+        //Perguntando o maior valor gerado
+        if(valMem > maxMem){
+            maxMem = valMem;
+            inMaxMem.setText(String.format("%d %%", maxMem));
+        }
     }
     
     // Valores do Disco
@@ -350,6 +356,12 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
         
         //Mostrando valor na barra
         valueDis.setValue(valDis);
+        
+        //Perguntando o maior valor gerado
+        if(valDis > maxDis){
+            maxDis = valDis;
+            inMaxDis.setText(String.format("%d %%", maxDis));
+        }
     }
     
     
