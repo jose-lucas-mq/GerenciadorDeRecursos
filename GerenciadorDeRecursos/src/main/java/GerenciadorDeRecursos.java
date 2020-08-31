@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,9 +36,9 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        avgCpu = new javax.swing.JLabel();
-        maxCpu = new javax.swing.JLabel();
-        minCpu = new javax.swing.JLabel();
+        inAvgCpu = new javax.swing.JLabel();
+        inMaxCpu = new javax.swing.JLabel();
+        inMinCpu = new javax.swing.JLabel();
         valueMem = new javax.swing.JProgressBar();
         jLabel6 = new javax.swing.JLabel();
         valueDis = new javax.swing.JProgressBar();
@@ -46,16 +49,16 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        avgMem = new javax.swing.JLabel();
-        maxMem = new javax.swing.JLabel();
-        minMem = new javax.swing.JLabel();
+        inAvgMem = new javax.swing.JLabel();
+        inMaxMem = new javax.swing.JLabel();
+        inMinMem = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        avgDisc = new javax.swing.JLabel();
-        maxDis = new javax.swing.JLabel();
-        minDIs = new javax.swing.JLabel();
+        inAvgDisc = new javax.swing.JLabel();
+        inMaxDis = new javax.swing.JLabel();
+        inMinDIs = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,11 +77,11 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
 
         jLabel5.setText("Média");
 
-        avgCpu.setText("----");
+        inAvgCpu.setText("----");
 
-        maxCpu.setText("----");
+        inMaxCpu.setText("----");
 
-        minCpu.setText("----");
+        inMinCpu.setText("----");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -90,9 +93,9 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(avgCpu, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maxCpu, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(minCpu, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inAvgCpu, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inMaxCpu, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inMinCpu, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -101,15 +104,15 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(maxCpu)
+                .addComponent(inMaxCpu)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minCpu)
+                .addComponent(inMinCpu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(3, 3, 3)
-                .addComponent(avgCpu)
+                .addComponent(inAvgCpu)
                 .addContainerGap())
         );
 
@@ -133,6 +136,11 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
 
         btnRead.setText("Ler recursos");
         btnRead.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReadActionPerformed(evt);
+            }
+        });
 
         jLabel17.setText("Máximo");
 
@@ -140,11 +148,11 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
 
         jLabel19.setText("Média");
 
-        avgMem.setText("----");
+        inAvgMem.setText("----");
 
-        maxMem.setText("----");
+        inMaxMem.setText("----");
 
-        minMem.setText("----");
+        inMinMem.setText("----");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -156,9 +164,9 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                     .addComponent(jLabel17)
                     .addComponent(jLabel18)
                     .addComponent(jLabel19)
-                    .addComponent(avgMem, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maxMem, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(minMem, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inAvgMem, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inMaxMem, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inMinMem, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -167,15 +175,15 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(maxMem)
+                .addComponent(inMaxMem)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minMem)
+                .addComponent(inMinMem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel19)
                 .addGap(3, 3, 3)
-                .addComponent(avgMem)
+                .addComponent(inAvgMem)
                 .addContainerGap())
         );
 
@@ -185,11 +193,11 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
 
         jLabel25.setText("Média");
 
-        avgDisc.setText("----");
+        inAvgDisc.setText("----");
 
-        maxDis.setText("----");
+        inMaxDis.setText("----");
 
-        minDIs.setText("----");
+        inMinDIs.setText("----");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -201,9 +209,9 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                     .addComponent(jLabel23)
                     .addComponent(jLabel24)
                     .addComponent(jLabel25)
-                    .addComponent(avgDisc, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maxDis, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(minDIs, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inAvgDisc, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inMaxDis, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inMinDIs, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -212,15 +220,15 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(maxDis)
+                .addComponent(inMaxDis)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minDIs)
+                .addComponent(inMinDIs)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jLabel25)
                 .addGap(3, 3, 3)
-                .addComponent(avgDisc)
+                .addComponent(inAvgDisc)
                 .addContainerGap())
         );
 
@@ -299,7 +307,68 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Importando Random
+    Random r = new Random();
+    Integer c = 0;
+    private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
+        // Somando 1 a cada nova leitura
+        c++;
+        
+        newReadCpu();
+        newReadMem();
+        newReadDis();
+    }//GEN-LAST:event_btnReadActionPerformed
+    
+    // Valores da CPU
+    Integer valCpu = 0, maxCpu = 0, minCpu = 100, avgCpu = 0;
+    public void newReadCpu(){
+        valCpu = r.nextInt(101);
+        
+        //Mostrando valor na barra
+        valueCpu.setValue(valCpu);
+        
+        //Perguntando o maior valor gerado
+        if(valCpu > maxCpu){
+            maxCpu = valCpu;
+            inMaxCpu.setText(String.format("%d %%", maxCpu));
+        }
+    }
+    
+     // Valores da Memoria
+    Integer valMem = 0, maxMem = 0, minMem = 100, avgMem = 0;;
+    public void newReadMem(){
+        valMem = r.nextInt(101);
+        
+        //Mostrando valor na barra
+        valueMem.setValue(valMem);
+    }
+    
+    // Valores do Disco
+     Integer valDis = 0, maxDis = 0, minDis = 100, avgDis = 0;;
+    public void newReadDis(){
+        valDis = r.nextInt(101);
+        
+        //Mostrando valor na barra
+        valueDis.setValue(valDis);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -336,10 +405,16 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel avgCpu;
-    private javax.swing.JLabel avgDisc;
-    private javax.swing.JLabel avgMem;
     private javax.swing.JButton btnRead;
+    private javax.swing.JLabel inAvgCpu;
+    private javax.swing.JLabel inAvgDisc;
+    private javax.swing.JLabel inAvgMem;
+    private javax.swing.JLabel inMaxCpu;
+    private javax.swing.JLabel inMaxDis;
+    private javax.swing.JLabel inMaxMem;
+    private javax.swing.JLabel inMinCpu;
+    private javax.swing.JLabel inMinDIs;
+    private javax.swing.JLabel inMinMem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel17;
@@ -357,12 +432,6 @@ public class GerenciadorDeRecursos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JLabel maxCpu;
-    private javax.swing.JLabel maxDis;
-    private javax.swing.JLabel maxMem;
-    private javax.swing.JLabel minCpu;
-    private javax.swing.JLabel minDIs;
-    private javax.swing.JLabel minMem;
     private javax.swing.JProgressBar valueCpu;
     private javax.swing.JProgressBar valueDis;
     private javax.swing.JProgressBar valueMem;
